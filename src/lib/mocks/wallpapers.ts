@@ -25,6 +25,24 @@ const createMockWallpaper = (
 		username: `artist_${id}`,
 		avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${id}`
 	},
+	comments: [
+		{
+			id: `c1-${id}`,
+			userId: 'user-101',
+			username: 'alex_skies',
+			avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=alex',
+			content: 'Wow, this looks amazing! 😍',
+			createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString()
+		},
+		{
+			id: `c2-${id}`,
+			userId: 'user-102',
+			username: 'sarah_design',
+			avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=sarah',
+			content: 'Can I use this for my project?',
+			createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString()
+		}
+	],
 	createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString(),
 	isFeatured
 });

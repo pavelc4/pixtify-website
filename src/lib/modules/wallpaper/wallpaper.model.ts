@@ -1,5 +1,14 @@
 export type DeviceType = 'mobile' | 'desktop';
 
+export interface Comment {
+	id: string;
+	userId: string;
+	username: string;
+	avatarUrl: string;
+	content: string;
+	createdAt: string;
+}
+
 export interface Wallpaper {
 	id: string;
 	title: string;
@@ -14,6 +23,7 @@ export interface Wallpaper {
 		username: string;
 		avatarUrl?: string;
 	};
+	comments: Comment[];
 	createdAt: string;
 	isFeatured?: boolean;
 }
