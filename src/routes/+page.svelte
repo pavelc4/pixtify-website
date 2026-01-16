@@ -21,7 +21,7 @@
 					</svg>
 					Explore Wallpapers
 				</a>
-				<a href="/auth/register" class="btn btn-neutral btn-lg text-neutral-content shadow-md hover:shadow-lg transition-all">Get Started</a>
+				<a href="/register" class="btn btn-neutral btn-lg text-neutral-content shadow-md hover:shadow-lg transition-all">Get Started</a>
 			</div>
 			
 

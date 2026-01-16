@@ -19,7 +19,7 @@
 			<!-- Desktop Actions -->
 			<div class="hidden md:flex items-center gap-2">
 
-				<a href="/auth/register" class="btn btn-primary rounded-full px-6 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all text-primary-content">Get Started</a>
+				<a href="/register" class="btn btn-primary rounded-full px-6 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all text-primary-content">Get Started</a>
 			</div>
 
 			<!-- Mobile Menu Button -->
@@ -42,10 +42,10 @@
 
 <!-- Mobile Menu (Floating Sheet) -->
 {#if mobileMenuOpen}
-	<div class="md:hidden fixed top-24 left-4 right-4 z-40 bg-base-100/90 backdrop-blur-xl p-4 rounded-[2rem] shadow-xl flex flex-col gap-2 origin-top animate-[scale-in_0.2s_ease-out]">
+	<div class="md:hidden fixed top-24 left-4 right-4 z-40 bg-base-100/60 backdrop-blur-xl p-4 rounded-[2rem] shadow-2xl border border-base-content/5 flex flex-col gap-2 origin-top animate-[scale-in_0.2s_ease-out]">
 
 		<a href="/browse" class="btn btn-ghost justify-start rounded-xl text-lg">Browse</a>
-		<a href="/auth/login" class="btn btn-ghost justify-start rounded-xl text-lg">Login</a>
-		<a href="/auth/register" class="btn btn-primary rounded-xl text-lg shadow-md">Get Started</a>
+		<a href="/login" class="btn btn-ghost justify-start rounded-xl text-lg">Login</a>
+		<a href="/register" class="btn btn-primary rounded-xl text-lg shadow-md">Get Started</a>
 	</div>
 {/if}
