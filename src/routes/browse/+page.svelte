@@ -37,54 +37,59 @@
 	<div class="max-w-[1600px] mx-auto px-4 md:px-6">
 		
 
-		<!-- Filters Bar (Sticky & Clean) -->
-		<div class="sticky top-16 z-30 bg-[#F6F0D7]/95 backdrop-blur-xl py-3 -mx-4 px-4 md:-mx-6 md:px-6 border-b border-[#89986D]/10 mb-6 shadow-sm">
-			<div class="flex items-center gap-3 overflow-x-auto no-scrollbar">
+		<!-- Filters Bar - Material 3 Style -->
+		<div class="sticky top-16 z-30 py-4 -mx-4 px-4 md:-mx-6 md:px-6 mb-6">
+			<div class="flex items-center gap-4 overflow-x-auto no-scrollbar">
 				
-				<!-- Device Filter -->
-				<div class="flex items-center bg-[#EBE6CF] p-1 gap-1 rounded-full shrink-0 border border-[#89986D]/15">
+				<!-- M3 Segmented Button - Device Filter -->
+				<div class="m3-segmented-button shrink-0">
 					<button 
-						class="btn btn-sm rounded-full px-4 font-medium border-none {selectedDevice === 'All' ? 'bg-[#89986D] text-white shadow-md' : 'bg-transparent text-[#2D3326]/70 hover:bg-[#DFDAC5]'}"
+						class="m3-segment {selectedDevice === 'All' ? 'selected' : ''}"
 						onclick={() => selectedDevice = 'All'}
 					>
-						All
+						<span class="m3-segment-label">All</span>
 					</button>
 					<button 
-						class="btn btn-sm rounded-full px-3 border-none {selectedDevice === 'Desktop' ? 'bg-[#89986D] text-white shadow-md' : 'bg-transparent text-[#2D3326]/70 hover:bg-[#DFDAC5]'}"
+						class="m3-segment {selectedDevice === 'Desktop' ? 'selected' : ''}"
 						onclick={() => selectedDevice = 'Desktop'}
 						aria-label="Desktop Wallpapers"
 					>
-						<Monitor class="w-4 h-4" color={selectedDevice === 'Desktop' ? '#ffffff' : '#2D3326'} />
+						<Monitor class="w-[18px] h-[18px]" />
+						<span class="m3-segment-label hidden sm:inline">Desktop</span>
 					</button>
 					<button 
-						class="btn btn-sm rounded-full px-3 border-none {selectedDevice === 'Mobile' ? 'bg-[#89986D] text-white shadow-md' : 'bg-transparent text-[#2D3326]/70 hover:bg-[#DFDAC5]'}"
+						class="m3-segment {selectedDevice === 'Mobile' ? 'selected' : ''}"
 						onclick={() => selectedDevice = 'Mobile'}
 						aria-label="Mobile Wallpapers"
 					>
-						<Smartphone class="w-4 h-4" color={selectedDevice === 'Mobile' ? '#ffffff' : '#2D3326'} />
+						<Smartphone class="w-[18px] h-[18px]" />
+						<span class="m3-segment-label hidden sm:inline">Mobile</span>
 					</button>
 				</div>
 
-				<!-- Search Bar -->
+				<!-- M3 Search Bar -->
 				<div class="flex-1 min-w-[200px]">
-					<div class="flex items-center gap-3 bg-[#EBE6CF] border border-[#89986D]/15 rounded-full px-4 py-2 focus-within:bg-white focus-within:border-[#89986D]/30 focus-within:shadow-md transition-all">
-						<Search class="w-4 h-4 text-[#2D3326]/40 shrink-0" />
+					<div class="m3-search-bar">
+						<Search class="w-5 h-5 text-[var(--md-on-surface-variant)] shrink-0" />
 						<input 
 							type="text" 
 							bind:value={searchQuery}
 							placeholder="Search wallpapers..." 
-							class="grow bg-transparent border-none p-0 focus:outline-none focus:ring-0 text-sm text-[#2D3326] placeholder:text-[#2D3326]/40"
+							class="m3-search-input"
 						/>
 					</div>
 				</div>
 
-				<!-- Sort Dropdown -->
+				<!-- M3 Filter Chip - Sort -->
 				<div class="shrink-0">
-					<select bind:value={sortBy} class="bg-[#EBE6CF] border border-[#89986D]/15 rounded-full px-4 py-2 text-sm text-[#2D3326]/80 font-medium focus:outline-none focus:bg-white focus:border-[#89986D]/30 cursor-pointer">
-						<option value="popular">Popular</option>
-						<option value="newest">Newest</option>
-						<option value="oldest">Oldest</option>
-					</select>
+					<div class="m3-filter-chip">
+						<select bind:value={sortBy} class="m3-chip-select">
+							<option value="popular">Popular</option>
+							<option value="newest">Newest</option>
+							<option value="oldest">Oldest</option>
+						</select>
+						<ChevronDown class="w-4 h-4 text-[var(--md-on-surface-variant)] pointer-events-none" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -116,6 +121,127 @@
 </div>
 
 <style>
+	/* M3 Design Tokens */
+	:global(:root) {
+		--md-surface: #F6F0D7;
+		--md-surface-container: #EBE6CF;
+		--md-surface-container-high: #E5E0C9;
+		--md-surface-container-highest: #DFDAC5;
+		--md-on-surface: #1B211A;
+		--md-on-surface-variant: #44483E;
+		--md-outline: #74796D;
+		--md-outline-variant: #C4C8B9;
+		--md-primary: #89986D;
+		--md-on-primary: #FFFFFF;
+		--md-secondary-container: #D8E7BE;
+		--md-on-secondary-container: #131F08;
+	}
+
+	/* M3 Segmented Button */
+	.m3-segmented-button {
+		display: flex;
+		border: 1px solid var(--md-outline);
+		border-radius: 20px;
+		overflow: hidden;
+		background: transparent;
+	}
+
+	.m3-segment {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		padding: 10px 16px;
+		border: none;
+		background: transparent;
+		color: var(--md-on-surface);
+		font-size: 14px;
+		font-weight: 500;
+		cursor: pointer;
+		position: relative;
+		transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.m3-segment:not(:last-child) {
+		border-right: 1px solid var(--md-outline);
+	}
+
+	.m3-segment:hover {
+		background: color-mix(in oklch, var(--md-on-surface), transparent 92%);
+	}
+
+	.m3-segment.selected {
+		background: var(--md-secondary-container);
+		color: var(--md-on-secondary-container);
+	}
+
+	.m3-segment.selected:hover {
+		background: color-mix(in oklch, var(--md-secondary-container), var(--md-on-secondary-container) 8%);
+	}
+
+	.m3-segment-label {
+		font-variation-settings: 'wght' 500;
+	}
+
+	/* M3 Search Bar */
+	.m3-search-bar {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		background: var(--md-surface-container-highest);
+		border-radius: 28px;
+		padding: 12px 16px;
+		transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.m3-search-bar:focus-within {
+		background: var(--md-surface);
+		box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.3);
+	}
+
+	.m3-search-input {
+		flex: 1;
+		background: transparent;
+		border: none;
+		padding: 0;
+		font-size: 16px;
+		color: var(--md-on-surface);
+		outline: none;
+	}
+
+	.m3-search-input::placeholder {
+		color: var(--md-on-surface-variant);
+	}
+
+	/* M3 Filter Chip */
+	.m3-filter-chip {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		background: var(--md-surface-container-high);
+		border: 1px solid var(--md-outline-variant);
+		border-radius: 8px;
+		padding: 8px 12px;
+		cursor: pointer;
+		transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.m3-filter-chip:hover {
+		background: color-mix(in oklch, var(--md-surface-container-high), var(--md-on-surface) 8%);
+	}
+
+	.m3-chip-select {
+		background: transparent;
+		border: none;
+		color: var(--md-on-surface);
+		font-size: 14px;
+		font-weight: 500;
+		cursor: pointer;
+		outline: none;
+		appearance: none;
+		padding-right: 4px;
+	}
+
 	/* Hide scrollbar for Chrome, Safari and Opera */
 	.no-scrollbar::-webkit-scrollbar {
 		display: none;
